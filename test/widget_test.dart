@@ -7,13 +7,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:uber/core/routers/app_routers.dart';
 
 import 'package:uber/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(Uber(appRouters: AppRouters()));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

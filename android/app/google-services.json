@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "181990301968",
+    "project_id": "uber-1ce35",
+    "storage_bucket": "uber-1ce35.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181990301968:android:d45b3cbe58f9794b12c595",
+        "android_client_info": {
+          "package_name": "com.example.uber"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA64W2DWUBWt3GYc9CqQjLmPY4D_vZyX_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

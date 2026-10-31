@@ -29,7 +29,7 @@ class _SecondSplashScreenState extends State<SecondSplashScreen>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacementNamed(context, Strings.signupScreenRoute);
+        Navigator.pushReplacementNamed(context, Strings.getStartedScreenRoute);
       }
     });
   

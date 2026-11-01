@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:uber/features/signup/business_logic/get_countries_repository.dart';
+import 'package:uber/features/signup/business_logic/repositories/get_countries_repository.dart';
 import 'package:uber/features/signup/data/models/country_model.dart';
 
 part 'get_all_countries_state.dart';

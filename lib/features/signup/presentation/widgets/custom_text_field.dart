@@ -2,18 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:uber/core/constants/colors.dart';
 import 'package:uber/features/signup/data/models/country_model.dart';
 
-class CustomTextForm extends StatelessWidget {
-  const CustomTextForm({
-    super.key,
-    required this._textEditingController,
-    this.countryModel,
-  });
+class CustomTextForm extends StatefulWidget {
+  const CustomTextForm({super.key, this.countryModel,required this.onChanged});
   final CountryModel? countryModel;
-  final TextEditingController _textEditingController;
+ final void Function(String) onChanged;
 
+  @override
+  State<CustomTextForm> createState() => _CustomTextFormState();
+}
+
+class _CustomTextFormState extends State<CustomTextForm> {
+  late TextEditingController _textEditingController;
+  @override
+  void initState() {
+    _textEditingController = TextEditingController();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Please enter your phone number';
+        }
+
+        final phone = value.trim();
+
+        if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(phone)) {
+          return 'Please enter a valid Egyptian phone number';
+        }
+
+        return null;
+      },
+      onChanged: widget.onChanged,
       controller: _textEditingController,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
@@ -22,7 +43,7 @@ class CustomTextForm extends StatelessWidget {
           child: Center(
             widthFactor: 1,
             child: Text(
-              '+${countryModel?.callingCode??'00'}' ,
+              '+${widget.countryModel?.callingCode ?? '00'}',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.black,
@@ -42,7 +63,7 @@ class CustomTextForm extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
 
-          borderSide: BorderSide(color: Colors.transparent),
+          borderSide: BorderSide(color: Colors.black),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

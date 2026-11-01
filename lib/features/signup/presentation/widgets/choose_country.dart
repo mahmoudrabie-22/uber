@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uber/core/constants/colors.dart';
-import 'package:uber/features/signup/cubit/get_all_countries_cubit.dart';
+import 'package:uber/features/signup/business_logic/get_countries_cubit/get_all_countries_cubit.dart';
 import 'package:uber/features/signup/data/models/country_model.dart';
 
 class ChooseCountry extends StatefulWidget {

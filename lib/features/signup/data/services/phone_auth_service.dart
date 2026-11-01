@@ -3,9 +3,10 @@ import 'package:uber/features/signup/data/models/phone_auth_model.dart';
 import 'package:uber/features/signup/data/models/user_model.dart';
 
 class PhoneAuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  late final FirebaseAuth _auth;
   String? verificationId;
-
+  PhoneAuthService({required FirebaseAuth firebaseAuth})
+    : _auth = firebaseAuth;
   Future<void> sendOTP({
     required String phoneNumber,
     required Function(PhoneAuthModel model) onCodeSent,
@@ -44,8 +45,8 @@ class PhoneAuthService {
     );
   }
 
-  Future<UserModel?> verifyOTP(String verifictionID ,String otp) async {
-    verificationId=verifictionID;
+  Future<UserModel?> verifyOTP(String verifictionID, String otp) async {
+    verificationId = verifictionID;
     if (verificationId == null) return null;
 
     final credential = PhoneAuthProvider.credential(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_kit/flutter_otp_kit.dart';
+import 'package:uber/core/constants/strings.dart';
 import 'package:uber/features/signup/business_logic/auth_phone/auth_phone_cubit.dart';
 import 'package:uber/features/signup/data/models/otp_arguments.dart';
 
@@ -21,8 +22,7 @@ class _OTPScreenState extends State<OTPScreen> {
         body: BlocConsumer<AuthPhoneCubit, AuthPhoneState>(
           listener: (context, state) {
             if (state is AuthPhoneCompleted) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text('kskdj')));
+              Navigator.pushReplacementNamed(context, homeScreenRoute);
             }
 
             if (state is AuthPhoneFailed) {

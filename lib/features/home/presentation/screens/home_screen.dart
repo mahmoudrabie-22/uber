@@ -46,6 +46,69 @@ class HomeScreen extends StatelessWidget {
               subtitle: Text('Request a ride'),
             ),
           ),
+          SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            child: ListTile(
+              leading: Icon(Icons.directions_car),
+              title: Text('Ride'),
+              subtitle: Text('Request a ride'),
+            ),
+          ),
+          SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            child: ListTile(
+              leading: Icon(Icons.directions_car),
+              title: Text('Ride'),
+              subtitle: Text('Request a ride'),
+            ),
+          ),
+          SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            child: ListTile(
+              leading: Icon(Icons.directions_car),
+              title: Text('Ride'),
+              subtitle: Text('Request a ride'),
+            ),
+          ),
+          SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            child: ListTile(
+              leading: Icon(Icons.directions_car),
+              title: Text('Ride'),
+              subtitle: Text('Request a ride'),
+            ),
+          ),
+          SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            child: ListTile(
+              leading: Icon(Icons.directions_car),
+              title: Text('Ride'),
+              subtitle: Text('Request a ride'),
+            ),
+          ),
+          SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            child: ListTile(
+              leading: Icon(Icons.directions_car),
+              title: Text('Ride'),
+              subtitle: Text('Request a ride'),
+            ),
+          ),
+          SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            child: ListTile(
+              leading: Icon(Icons.directions_car),
+              title: Text('Ride'),
+              subtitle: Text('Request a ride'),
+            ),
+          ),
         ],
       ),
     );

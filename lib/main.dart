@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uber/core/constants/strings.dart';
 import 'package:uber/core/di/dependency_injection.dart';
+import 'package:uber/core/helpers/auth_gate.dart';
 import 'package:uber/core/routers/app_routers.dart';
 
 import 'package:uber/features/signup/business_logic/repositories/get_countries_repository.dart';
@@ -31,6 +32,7 @@ class Uber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: const AuthGate(),
       debugShowCheckedModeBanner: false,
       initialRoute: secondSplashScreenRoute,
       onGenerateRoute: appRouters.generateRoute,

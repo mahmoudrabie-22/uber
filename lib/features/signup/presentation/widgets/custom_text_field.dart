@@ -3,10 +3,23 @@ import 'package:uber/core/constants/colors.dart';
 import 'package:uber/features/signup/data/models/country_model.dart';
 
 class CustomTextForm extends StatefulWidget {
-  const CustomTextForm({super.key, this.countryModel,required this.onChanged});
+  const CustomTextForm({
+    super.key,
+    this.countryModel,
+    required this.onChanged,
+    this.prefixIcon,
+    this.isObscure = false,
+    this.hint,
+    this.validator,
+    this.keyboardType,
+  });
   final CountryModel? countryModel;
- final void Function(String) onChanged;
-
+  final Widget? prefixIcon;
+  final bool isObscure;
+  final void Function(String) onChanged;
+  final String? hint;
+  final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
   @override
   State<CustomTextForm> createState() => _CustomTextFormState();
 }
@@ -18,43 +31,20 @@ class _CustomTextFormState extends State<CustomTextForm> {
     _textEditingController = TextEditingController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.trim().isEmpty) {
-          return 'Please enter your phone number';
-        }
-
-        final phone = value.trim();
-
-        if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(phone)) {
-          return 'Please enter a valid Egyptian phone number';
-        }
-
-        return null;
-      },
+      obscureText: widget.isObscure,
+      validator: widget.validator,
       onChanged: widget.onChanged,
       controller: _textEditingController,
-      keyboardType: TextInputType.phone,
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        prefixIcon: Padding(
-          padding: EdgeInsets.only(left: 12, right: 8),
-          child: Center(
-            widthFactor: 1,
-            child: Text(
-              '+${widget.countryModel?.callingCode ?? '00'}',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
+        hintText: widget.hint,
+        prefixIcon: widget.prefixIcon,
         prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
         constraints: BoxConstraints(minHeight: 52),
-        hintText: '0100 123 4567',
         hintStyle: TextStyle(fontSize: 14),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

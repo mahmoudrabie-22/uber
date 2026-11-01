@@ -30,7 +30,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return BlocListener<GoogleAuthCubit, GoogleAuthState>(
       listener: (context, state) {
         if (state is GoogleAuthSuccess) {
-          Navigator.pushReplacementNamed(context, homeScreenRoute);
+          Navigator.pushReplacementNamed(context, navScreenRoute);
         }
 
         if (state is GoogleAuthFailure) {
@@ -60,7 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
           }
 
           if (state is AuthPhoneCompleted) {
-            Navigator.pushNamed(context, homeScreenRoute);
+            Navigator.pushNamed(context, navScreenRoute);
           }
         },
         builder: (context, state) {
@@ -107,6 +107,40 @@ class _SignupScreenState extends State<SignupScreen> {
                               SizedBox(width: 10),
                               Expanded(
                                 child: CustomTextForm(
+                                  keyboardType: TextInputType.phone,
+                                  validator: (value) {
+                                    if (value == null || value.trim().isEmpty) {
+                                      return 'Please enter your phone number';
+                                    }
+
+                                    final phone = value.trim();
+
+                                    if (!RegExp(r'^01[0125][0-9]{8}$')
+                                        .hasMatch(phone)) {
+                                      return 'Please enter a valid Egyptian phone number';
+                                    }
+
+                                    return null;
+                                  },
+                                  hint: '0100 123 4567',
+                                  isObscure: false,
+                                  prefixIcon: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 12,
+                                      right: 8,
+                                    ),
+                                    child: Center(
+                                      widthFactor: 1,
+                                      child: Text(
+                                        '+${countryModel?.callingCode ?? '00'}',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   countryModel: countryModel,
                                   onChanged: (value) {
                                     _phoneNumber = value;
@@ -171,7 +205,12 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           SizedBox(height: 10),
                           CustomButton(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                enterEmailAndPasswordScreenRoute,
+                              );
+                            },
                             bgColor: greyButton,
                             children: [
                               Icon(Icons.mail, size: 20),

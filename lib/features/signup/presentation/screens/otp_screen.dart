@@ -22,7 +22,7 @@ class _OTPScreenState extends State<OTPScreen> {
         body: BlocConsumer<AuthPhoneCubit, AuthPhoneState>(
           listener: (context, state) {
             if (state is AuthPhoneCompleted) {
-              Navigator.pushReplacementNamed(context, homeScreenRoute);
+              Navigator.pushReplacementNamed(context, navScreenRoute);
             }
 
             if (state is AuthPhoneFailed) {

@@ -4,16 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uber/core/constants/strings.dart';
 import 'package:uber/core/di/dependency_injection.dart';
 import 'package:uber/features/home/presentation/screens/home_screen.dart';
+import 'package:uber/features/home/presentation/screens/navigation_widget.dart';
 import 'package:uber/features/second_splash/get_started_screen.dart';
 import 'package:uber/features/second_splash/second_splash_screen.dart';
 import 'package:uber/features/signup/business_logic/auth_phone/auth_phone_cubit.dart';
+import 'package:uber/features/signup/business_logic/email_auth_cubit/email_auth_cubit.dart';
 import 'package:uber/features/signup/business_logic/google_auth_cubit/google_auth_cubit.dart';
 import 'package:uber/features/signup/business_logic/repositories/auth_phone_repository.dart';
+import 'package:uber/features/signup/business_logic/repositories/email_auth_repository.dart';
 import 'package:uber/features/signup/business_logic/repositories/get_countries_repository.dart';
 import 'package:uber/features/signup/business_logic/get_countries_cubit/get_all_countries_cubit.dart';
 import 'package:uber/features/signup/business_logic/repositories/google_auth_repository.dart';
 import 'package:uber/features/signup/data/models/otp_arguments.dart';
 import 'package:uber/features/signup/data/services/phone_auth_service.dart';
+import 'package:uber/features/signup/presentation/screens/enter_email_and_password_screen.dart';
 import 'package:uber/features/signup/presentation/screens/otp_screen.dart';
 import 'package:uber/features/signup/presentation/screens/signup_screen.dart';
 
@@ -56,6 +60,9 @@ class AppRouters {
       case getStartedScreenRoute:
         return MaterialPageRoute(builder: (_) => const GetStartedScreen());
 
+      case navScreenRoute:
+        return MaterialPageRoute(builder: (_) => const NavigationWidget());
+
       case homeScreenRoute:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
@@ -71,6 +78,16 @@ class AppRouters {
               ),
             ),
             child: OTPScreen(args: args),
+          ),
+        );
+
+      case enterEmailAndPasswordScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) => EmailAuthCubit(
+              emailAuthRepository: getIt<EmailAuthRepository>(),
+            ),
+            child: const EnterEmailAndPasswordScreen(),
           ),
         );
       default:
